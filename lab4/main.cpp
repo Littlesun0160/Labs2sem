@@ -7,7 +7,7 @@ private:
 	Type m_Matrix[rows][columns] = {};
 public:
 	Matrix() {}
-	//конструктор копирования
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	Matrix(const Matrix& other)
 	{
 		for (int i = 0; i < rows;i++)
@@ -18,7 +18,7 @@ public:
 			}
 		}
 	}
-	//оператор присваивания копированием
+	//РѕРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РєРѕРїРёСЂРѕРІР°РЅРёРµРј
 	Matrix& operator=(const Matrix& other)
 	{
 		if ((*this).m_Matrix != other.m_Matrix)
@@ -35,7 +35,7 @@ public:
 	}
 	~Matrix() {};
 
-	//операторы ввода и вывода
+	//РѕРїРµСЂР°С‚РѕСЂС‹ РІРІРѕРґР° Рё РІС‹РІРѕРґР°
 	friend std::istream& operator>>(std::istream& in, Matrix& other)
 	{
 		for (int i = 0; i < rows; i++)
@@ -60,7 +60,7 @@ public:
 		return out;
 	}
 
-	//операторы +, +=
+	//РѕРїРµСЂР°С‚РѕСЂС‹ +, +=
 	Matrix& operator+= (const Matrix& other)
 	{
 		for (int i = 0; i < rows; i++)
@@ -79,13 +79,13 @@ public:
 		return intermediate;
 	}
 
-	//оператор для получения и изменения элемента по индексу
+	//РѕРїРµСЂР°С‚РѕСЂ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ Рё РёР·РјРµРЅРµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 	Type& operator() (int nrow, int ncolumn)
 	{
 		return (*this).m_Matrix[nrow][ncolumn];
 	}
 
-	//операторы * и *=
+	//РѕРїРµСЂР°С‚РѕСЂС‹ * Рё *=
 	template <int newcolumns>
 	Matrix<Type,rows,newcolumns> operator*(Matrix<Type,columns,newcolumns>& other)
 	{
@@ -108,7 +108,7 @@ public:
 			return (*this);
 	}
 
-	//оператор++
+	//РѕРїРµСЂР°С‚РѕСЂ++
 	Matrix<Type, rows, columns>& operator++ ()
 	{
 		for (int i = 0; i < rows; i++)
@@ -121,7 +121,7 @@ public:
 		return (*this);
 	}
 
-	//Вычисление определителя
+	//Р’С‹С‡РёСЃР»РµРЅРёРµ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ
 	Type Determinant()
 	{
 		if (rows == columns)
@@ -154,27 +154,27 @@ int main()
 
 	Matrix<int, 2, 2> matr1;
 	std::cin >> matr1;
-	std::cout << "Матрица1:" << "\n" << matr1;
+	std::cout << "РњР°С‚СЂРёС†Р°1:" << "\n" << matr1;
 	Matrix<int, 2, 2> matr2(matr1);
-	std::cout << "Матрица2, заданная конструктором копирования:" << "\n" << matr2;
+	std::cout << "РњР°С‚СЂРёС†Р°2, Р·Р°РґР°РЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРј РєРѕРїРёСЂРѕРІР°РЅРёСЏ:" << "\n" << matr2;
 	Matrix<int, 2, 2> matr3 = matr1;
-	std::cout << "Матрица3, заданная оператором присваивания копированием:" << "\n" << matr3;
+	std::cout << "РњР°С‚СЂРёС†Р°3, Р·Р°РґР°РЅРЅР°СЏ РѕРїРµСЂР°С‚РѕСЂРѕРј РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РєРѕРїРёСЂРѕРІР°РЅРёРµРј:" << "\n" << matr3;
 
-	//Проверка операторов +, +=, *, *=
-	matr3 += matr1; std::cout << "Матрица3 += Матрица1:" << "\n" << matr3;
-	matr2 = matr1 + matr3; std::cout << "Матрица2 = Матрица1 + Матрица3:" << "\n" << matr2;
+	//РџСЂРѕРІРµСЂРєР° РѕРїРµСЂР°С‚РѕСЂРѕРІ +, +=, *, *=
+	matr3 += matr1; std::cout << "РњР°С‚СЂРёС†Р°3 += РњР°С‚СЂРёС†Р°1:" << "\n" << matr3;
+	matr2 = matr1 + matr3; std::cout << "РњР°С‚СЂРёС†Р°2 = РњР°С‚СЂРёС†Р°1 + РњР°С‚СЂРёС†Р°3:" << "\n" << matr2;
 
 	Matrix<int, 2, 3> matr4;
 	std::cin >> matr4;
 	Matrix<int, 2, 3> result = matr2 * matr4;
-	std::cout << "Матрица2 * Матрица4:" << "\n" << result;
+	std::cout << "РњР°С‚СЂРёС†Р°2 * РњР°С‚СЂРёС†Р°4:" << "\n" << result;
 	
-	matr3 *= matr1; std::cout << "Матрица3, умноженная на Матрицу1:" << "\n" << matr3;
+	matr3 *= matr1; std::cout << "РњР°С‚СЂРёС†Р°3, СѓРјРЅРѕР¶РµРЅРЅР°СЏ РЅР° РњР°С‚СЂРёС†Сѓ1:" << "\n" << matr3;
 
-	//Оператор++, определитель, оператор вызова определенного элемента матрицы
+	//РћРїРµСЂР°С‚РѕСЂ++, РѕРїСЂРµРґРµР»РёС‚РµР»СЊ, РѕРїРµСЂР°С‚РѕСЂ РІС‹Р·РѕРІР° РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РјР°С‚СЂРёС†С‹
 	++matr3;
 	std::cout << "++matr3:" << "\n" << matr3;
-	std::cout << "Определитель матрицы1 = " << matr1.Determinant() << "\n";
+	std::cout << "РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹1 = " << matr1.Determinant() << "\n";
 	std::cout << "matr1[1][1] = " << matr1(1, 1) << "\n";
 	matr1(1, 1) = 2; std::cout << matr1(1, 1);
 
